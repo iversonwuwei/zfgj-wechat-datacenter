@@ -1,0 +1,11 @@
+server:
+  port: 18081
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.32.156.224:3306/dlfc_155
+    username: rep1
+    password: mysql
+mybatis:
+  config-location: classpath:mybatisConfig/mybatis-config.xml
+  mapperLocations: classpath:mappings/*.xml
