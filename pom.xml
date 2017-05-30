@@ -10,6 +10,8 @@
         <module>dlfc-system-datacenter</module>
         <module>dlfc-lessee-datacenter</module>
         <module>dlfc-user-datacenter</module>
+        <module>dlfc-agent-datacenter</module>
+        <module>dlfc-contract-datacenter</module>
     </modules>
     <packaging>pom</packaging>
 
