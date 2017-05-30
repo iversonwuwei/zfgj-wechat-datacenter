@@ -91,36 +91,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>
-                com.housecenter.dlfc.framework.starter.data.mybatis
-            </groupId>
-            <artifactId>dlfc-framework-starter-data-mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>
-                com.housecenter.dlfc.framework.starter.web
-            </groupId>
-            <artifactId>dlfc-framework-starter-web</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
         </dependency>
     </dependencies>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <!-- Import dependency management from framework -->
-                <groupId>com.housecenter.dlfc.framework</groupId>
-                <artifactId>dlfc-framework-dependencies</artifactId>
-                <version>${framework.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <plugins>

@@ -1,5 +1,5 @@
 server:
-  port: 18081
+  port: 18082
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
@@ -7,5 +7,5 @@ spring:
     username: rep1
     password: mysql
 mybatis:
-  config-location: classpath:mybatisConfig/mybatis-config.xml
+  config-location: classpath:mybatis-config.xml
   mapperLocations: classpath:mappings/*.xml
