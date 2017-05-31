@@ -3,6 +3,7 @@ package com.dlfc.system.controller;
 import com.dlfc.system.entity.SysAreaAreas;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.DataService;
+import com.dlfc.system.service.impl.SysAreaAreasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +18,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysAreaAreas")
+@RequestMapping("/wc/datas/sysAreaAreas")
 public class SysAreaAreasController {
 
     @Autowired
     @Qualifier("SysAreaAreasService")
     private DataService service;
 
+    @Autowired
+    private SysAreaAreasService serviceImpl;
+
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysAreaAreas entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);
@@ -56,5 +60,10 @@ public class SysAreaAreasController {
     List<SysAreaAreas> findAll(@RequestParam(required = false) Integer pageSize,
                                @RequestParam(required = false) Integer pageNo) {
         return service.findAll(null, pageSize, pageNo);
+    }
+
+    @RequestMapping(value = "/findByCityId", method = RequestMethod.GET)
+    List<SysAreaAreas> findByCityId(@RequestParam(name = "cityId") String cityId) {
+        return serviceImpl.findByCityId(cityId);
     }
 }

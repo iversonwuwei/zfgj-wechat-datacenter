@@ -26,6 +26,8 @@ public class UsrHouCollectionService implements DataService<UsrHouCollection> {
 
     private UsrHouCollection entity;
 
+    private List<UsrHouCollection> entityList;
+
     @Autowired
     private DataMapper<UsrHouCollection, UsrHouCollectionExample> mapper;
 
@@ -89,5 +91,39 @@ public class UsrHouCollectionService implements DataService<UsrHouCollection> {
         criteria.andDeleteFlgEqualTo((short) 0);
         example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
         return mapper.selectByExample(example);
+    }
+
+    public List<UsrHouCollection> findAllByUid(String uid) {
+        if (null != entity) {
+            example = new UsrHouCollectionExample();
+            criteria = example.createCriteria();
+            criteria.andDeleteFlgEqualTo((short) 0);
+            criteria.andUidEqualTo(uid);
+            return mapper.selectByExample(example);
+        }
+        return null;
+    }
+
+    public boolean saveOrUpdate(UsrHouCollection entity,
+                                UsrUser user) {
+        if (null != user && null != entity) {
+            example = new UsrHouCollectionExample();
+            criteria = example.createCriteria();
+            criteria.andDeleteFlgEqualTo((short) 0);
+            criteria.andUidEqualTo(entity.getUid());
+            criteria.andHidEqualTo(entity.getHid());
+            entityList = mapper.selectByExample(example);
+            if (null != entityList && entityList.size() == 1) {
+                if (null == removeById(entityList.get(0).getId(), user)) {
+                    return false;
+                }
+            } else {
+                if (null == save(entity, user)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

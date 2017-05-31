@@ -90,4 +90,12 @@ public class SysTradeAreasService implements DataService<SysTradeAreas> {
         example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
         return mapper.selectByExample(example);
     }
+
+    public List<SysTradeAreas> findByParentId(String parentId) {
+        example = new SysTradeAreasExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        criteria.andParentIdEqualTo(parentId);
+        return mapper.selectByExample(example);
+    }
 }

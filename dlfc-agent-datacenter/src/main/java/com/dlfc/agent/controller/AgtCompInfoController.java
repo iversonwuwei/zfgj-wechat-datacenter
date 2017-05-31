@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/agtCompInfo")
+@RequestMapping("/wc/datas/agtCompInfo")
 public class AgtCompInfoController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class AgtCompInfoController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam AgtCompInfo entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

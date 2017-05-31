@@ -3,6 +3,7 @@ package com.dlfc.system.controller;
 import com.dlfc.system.entity.SysTradeAreas;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.DataService;
+import com.dlfc.system.service.impl.SysTradeAreasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +18,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysTradeAreas")
+@RequestMapping("/wc/datas/sysTradeAreas")
 public class SysTradeAreasController {
 
     @Autowired
     @Qualifier("SysTradeAreasService")
     private DataService service;
 
+    @Autowired
+    private SysTradeAreasService serviceImpl;
+
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysTradeAreas entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);
@@ -56,5 +60,10 @@ public class SysTradeAreasController {
     List<SysTradeAreas> findAll(@RequestParam(required = false) Integer pageSize,
                                 @RequestParam(required = false) Integer pageNo) {
         return service.findAll(null, pageSize, pageNo);
+    }
+
+    @RequestMapping(value = "/findByParentId", method = RequestMethod.GET)
+    List<SysTradeAreas> findByParentId(@RequestParam(name = "areaId") String parentId) {
+        return serviceImpl.findByParentId(parentId);
     }
 }

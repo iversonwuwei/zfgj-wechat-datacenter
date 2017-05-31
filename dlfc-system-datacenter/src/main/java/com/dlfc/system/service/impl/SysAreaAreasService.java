@@ -90,4 +90,12 @@ public class SysAreaAreasService implements DataService<SysAreaAreas> {
         example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
         return mapper.selectByExample(example);
     }
+
+    public List<SysAreaAreas> findByCityId(String cityId) {
+        example = new SysAreaAreasExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        criteria.andCityIdEqualTo(cityId);
+        return mapper.selectByExample(example);
+    }
 }

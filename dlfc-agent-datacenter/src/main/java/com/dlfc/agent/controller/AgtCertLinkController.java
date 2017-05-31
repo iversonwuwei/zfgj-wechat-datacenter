@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/agtCertLink")
+@RequestMapping("/wc/datas/agtCertLink")
 public class AgtCertLinkController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class AgtCertLinkController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam AgtCertLink entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

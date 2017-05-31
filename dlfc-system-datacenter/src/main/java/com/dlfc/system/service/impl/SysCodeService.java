@@ -82,12 +82,20 @@ public class SysCodeService implements DataService<SysCode> {
 
     @Override
     public List<SysCode> findAll(String orderBy,
-                                      Integer pageSize,
-                                      Integer pageNo) {
+                                 Integer pageSize,
+                                 Integer pageNo) {
         example = new SysCodeExample();
         criteria = example.createCriteria();
         criteria.andDeleteFlgEqualTo((short) 0);
         example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
+        return mapper.selectByExample(example);
+    }
+
+    public List<SysCode> findByType(String type) {
+        example = new SysCodeExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        criteria.andTypeEqualTo(type);
         return mapper.selectByExample(example);
     }
 }

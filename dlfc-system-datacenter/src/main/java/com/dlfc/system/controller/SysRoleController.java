@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysRole")
+@RequestMapping("/wc/datas/sysRole")
 public class SysRoleController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class SysRoleController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysRole entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

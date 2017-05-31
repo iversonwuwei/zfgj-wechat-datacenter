@@ -3,12 +3,10 @@ package com.dlfc.user.controller;
 import com.dlfc.user.entity.UsrHouCollection;
 import com.dlfc.user.entity.UsrUser;
 import com.dlfc.user.service.DataService;
+import com.dlfc.user.service.impl.UsrHouCollectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,19 +15,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/usrHouCollection")
+@RequestMapping("/wc/datas/usrHouCollection")
 public class UsrHouCollectionController {
 
     @Autowired
     @Qualifier("UsrHouCollectionService")
     private DataService service;
 
+    @Autowired
+    private UsrHouCollectionService serviceImpl;
+
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam UsrHouCollection entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);
@@ -56,5 +57,16 @@ public class UsrHouCollectionController {
     List<UsrHouCollection> findAll(@RequestParam(required = false) Integer pageSize,
                                    @RequestParam(required = false) Integer pageNo) {
         return service.findAll(null, pageSize, pageNo);
+    }
+
+    @RequestMapping(value = "/findAllByUid", method = RequestMethod.GET)
+    List<UsrHouCollection> findAllByUid(@RequestParam String uid) {
+        return serviceImpl.findAllByUid(uid);
+    }
+
+    @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
+    boolean saveOrUpdate(@RequestParam UsrHouCollection entity,
+                         @RequestParam UsrUser user) {
+        return serviceImpl.saveOrUpdate(entity, user);
     }
 }

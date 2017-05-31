@@ -3,6 +3,7 @@ package com.dlfc.system.controller;
 import com.dlfc.system.entity.SysInfoAtt;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.DataService;
+import com.dlfc.system.service.impl.SysInfoAttService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +18,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysInfoAtt")
+@RequestMapping("/wc/datas/sysInfoAtt")
 public class SysInfoAttController {
 
     @Autowired
     @Qualifier("SysInfoAttService")
     private DataService service;
 
+    @Autowired
+    private SysInfoAttService serviceImpl;
+
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysInfoAtt entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);
@@ -56,5 +60,11 @@ public class SysInfoAttController {
     List<SysInfoAtt> findAll(@RequestParam(required = false) Integer pageSize,
                              @RequestParam(required = false) Integer pageNo) {
         return service.findAll(null, pageSize, pageNo);
+    }
+
+    @RequestMapping(value = "/findAllByLidAndFileType", method = RequestMethod.GET)
+    List<SysInfoAtt> findAllByLidAndFileType(@RequestParam String lid,
+                                             @RequestParam Integer fileType) {
+        return serviceImpl.findAllByLidAndType(lid, fileType);
     }
 }

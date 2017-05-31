@@ -1,12 +1,11 @@
 package com.dlfc.system.service.impl;
 
 import com.dlfc.system.common.PageUtil;
-import com.dlfc.system.entity.SysInfoAtt;
-import com.dlfc.system.entity.SysInfoAttExample;
+import com.dlfc.system.entity.SysMessage;
+import com.dlfc.system.entity.SysMessageExample;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.mapper.DataMapper;
 import com.dlfc.system.service.DataService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,29 +16,29 @@ import java.util.List;
  * Created by K on 2017/5/29.
  */
 
-@Service("SysInfoAttService")
+@Service("SysMessageService")
 @Transactional
-public class SysInfoAttService implements DataService<SysInfoAtt> {
+public class SysMessageService implements DataService<SysMessage> {
 
-    private SysInfoAttExample example;
+    private SysMessageExample example;
 
-    private SysInfoAttExample.Criteria criteria;
+    private SysMessageExample.Criteria criteria;
 
-    private SysInfoAtt entity;
+    private SysMessage entity;
 
     @Autowired
-    private DataMapper<SysInfoAtt, SysInfoAttExample> mapper;
+    private DataMapper<SysMessage, SysMessageExample> mapper;
 
     @Override
     public int count() {
-        example = new SysInfoAttExample();
+        example = new SysMessageExample();
         criteria = example.createCriteria();
         criteria.andDeleteFlgEqualTo((short) 0);
         return mapper.countByExample(example);
     }
 
     @Override
-    public String save(SysInfoAtt entity,
+    public String save(SysMessage entity,
                        UsrUser user) {
         if (null != user && null != entity) {
             entity.preInsert(user);
@@ -54,9 +53,9 @@ public class SysInfoAttService implements DataService<SysInfoAtt> {
     public String removeById(String id,
                              UsrUser user) {
         if (null != user) {
-            this.entity = new SysInfoAtt();
+            this.entity = new SysMessage();
             this.entity.setId(id);
-            this.entity.setDeleteFlg((short) 1);
+            this.entity.setDeleteFlg((short) 0);
             if (mapper.updateByPrimaryKeySelective(this.entity) > 0) {
                 return this.entity.getId();
             }
@@ -65,7 +64,7 @@ public class SysInfoAttService implements DataService<SysInfoAtt> {
     }
 
     @Override
-    public String updateById(SysInfoAtt entity,
+    public String updateById(SysMessage entity,
                              UsrUser user) {
         if (null != user && null != entity) {
             entity.preUpdate(user);
@@ -77,32 +76,26 @@ public class SysInfoAttService implements DataService<SysInfoAtt> {
     }
 
     @Override
-    public SysInfoAtt findById(String id) {
+    public SysMessage findById(String id) {
         return mapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public List<SysInfoAtt> findAll(String orderBy,
+    public List<SysMessage> findAll(String orderBy,
                                     Integer pageSize,
                                     Integer pageNo) {
-        example = new SysInfoAttExample();
+        example = new SysMessageExample();
         criteria = example.createCriteria();
         criteria.andDeleteFlgEqualTo((short) 0);
         example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
         return mapper.selectByExample(example);
     }
 
-    public List<SysInfoAtt> findAllByLidAndType(String lid,
-                                                Integer fileType) {
-        example = new SysInfoAttExample();
+    public List<SysMessage> findByReceiverUid(String receiverUid) {
+        example = new SysMessageExample();
         criteria = example.createCriteria();
         criteria.andDeleteFlgEqualTo((short) 0);
-        if (StringUtils.isNotEmpty(lid)) {
-            criteria.andLidEqualTo(lid);
-        }
-        if (null != fileType) {
-            criteria.andFileTypeEqualTo(fileType);
-        }
+        criteria.andReceiverUidEqualTo(receiverUid);
         return mapper.selectByExample(example);
     }
 }

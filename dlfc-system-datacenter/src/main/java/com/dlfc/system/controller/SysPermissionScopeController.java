@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysPermissionScope")
+@RequestMapping("/wc/datas/sysPermissionScope")
 public class SysPermissionScopeController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class SysPermissionScopeController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysPermissionScope entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

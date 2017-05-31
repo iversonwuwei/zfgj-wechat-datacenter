@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysParam")
+@RequestMapping("/wc/datas/sysParam")
 public class SysParamController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class SysParamController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysParam entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

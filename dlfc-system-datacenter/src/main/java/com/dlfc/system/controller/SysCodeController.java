@@ -3,6 +3,7 @@ package com.dlfc.system.controller;
 import com.dlfc.system.entity.SysCode;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.DataService;
+import com.dlfc.system.service.impl.SysCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,19 +18,22 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/sysCode")
+@RequestMapping("/wc/datas/sysCode")
 public class SysCodeController {
 
     @Autowired
     @Qualifier("SysCodeService")
     private DataService service;
 
+    @Autowired
+    private SysCodeService serviceImpl;
+
     @RequestMapping(value = "/count", method = RequestMethod.GET)
     public int count() {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam SysCode entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);
@@ -54,7 +58,12 @@ public class SysCodeController {
 
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     List<SysCode> findAll(@RequestParam(required = false) Integer pageSize,
-                               @RequestParam(required = false) Integer pageNo) {
+                          @RequestParam(required = false) Integer pageNo) {
         return service.findAll(null, pageSize, pageNo);
+    }
+
+    @RequestMapping(value = "/findByType", method = RequestMethod.GET)
+    List<SysCode> findByType(@RequestParam(name = "type") String type) {
+        return serviceImpl.findByType(type);
     }
 }

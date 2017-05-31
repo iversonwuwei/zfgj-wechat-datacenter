@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/usrDelInfo")
+@RequestMapping("/wc/datas/usrDelInfo")
 public class UsrDelInfoController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class UsrDelInfoController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam UsrDelInfo entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

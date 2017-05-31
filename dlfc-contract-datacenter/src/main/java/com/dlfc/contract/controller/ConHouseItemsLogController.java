@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/conHouseItemsLog")
+@RequestMapping("/wc/datas/conHouseItemsLog")
 public class ConHouseItemsLogController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class ConHouseItemsLogController {
         return service.count();
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     String save(@RequestParam ConHouseItemsLog entity,
                 @RequestParam UsrUser user) {
         return service.save(entity, user);

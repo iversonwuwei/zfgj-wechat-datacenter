@@ -6,6 +6,12 @@ spring:
     url: jdbc:mysql://10.32.156.224:3306/dlfc_155
     username: rep1
     password: mysql
+  application:
+    name: dlfc-datacenter-user
 mybatis:
   config-location: classpath:mybatis-config.xml
   mapperLocations: classpath:mappings/*.xml
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.32.156.86:18099/eureka/
