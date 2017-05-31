@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,13 +22,13 @@ import java.util.List;
 @Transactional
 public class HouLeaseInfoService implements DataService<HouLeaseInfo> {
 
+    private static final String LIKE_FIX = "%";
+
     private HouLeaseInfoExample example;
 
     private HouLeaseInfoExample.Criteria criteria;
 
     private HouLeaseInfo entity;
-
-    private List<HouLeaseInfo> entityList;
 
     @Autowired
     private DataMapper<HouLeaseInfo, HouLeaseInfoExample> mapper;
@@ -124,26 +123,19 @@ public class HouLeaseInfoService implements DataService<HouLeaseInfo> {
                 orderBy = "RENT DESC";
             }
         }
-        example.setOrderByClause(PageUtil.generatePage(orderBy, dto.getPageSize(), dto.getPageNo()));
-        entityList = mapper.selectByExample(example);
-        if (null != dto.getTradeIdList() && dto.getTradeIdList().size() > 0) {
-            List<HouLeaseInfo> newList = new ArrayList<>();
-            String district;
-            String[] array;
-            for (HouLeaseInfo entity : entityList) {
-                district = entity.getDistrict();
-                if (StringUtils.isNotEmpty(district)) {
-                    array = district.split(",");
-                    if (null != array && array.length == 2) {
-                        if (dto.getTradeIdList().contains(array[1])) {
-                            newList.add(entity);
-                        }
-                    }
-                }
-            }
-            return newList;
+        if (StringUtils.isNotEmpty(dto.getDistrictId())) {
+            criteria.andDistrictLike(LIKE_FIX + dto.getDistrictId() + LIKE_FIX);
         }
-        return entityList;
+        if (StringUtils.isNotEmpty(dto.getPaymentStyle())) {
+            criteria.andRentTypeLike(LIKE_FIX + "," + dto.getPaymentStyle() + LIKE_FIX);
+        }
+        if (null != dto.getSurroundingFacilities() && dto.getSurroundingFacilities().length > 0) {
+            for (String str : dto.getSurroundingFacilities()) {
+                criteria.andSurroundingFacilitiesLike(LIKE_FIX + str + LIKE_FIX);
+            }
+        }
+        example.setOrderByClause(PageUtil.generatePage(orderBy, dto.getPageSize(), dto.getPageNo()));
+        return mapper.selectByExample(example);
     }
 
     public List<HouLeaseInfo> findByUid(String uid,

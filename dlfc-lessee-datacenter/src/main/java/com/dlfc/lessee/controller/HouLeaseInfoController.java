@@ -68,7 +68,7 @@ public class HouLeaseInfoController {
         return serviceImpl.findByUid(uid, orderBy, pageSize, pageNo);
     }
 
-    @RequestMapping(value = "/findAllByParams", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllByParams", method = RequestMethod.POST)
     List<HouLeaseInfo> findAllByParams(@RequestBody HouLeaseInfoDTO dto) {
         return serviceImpl.findAllByParams(dto);
     }

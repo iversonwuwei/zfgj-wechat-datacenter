@@ -5,7 +5,6 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 /**
  * Created by K on 2017/5/31.
@@ -32,9 +31,9 @@ public class HouLeaseInfoDTO {
     private Integer pageNo;
 
     /**
-     * 区域ID集合
+     * 区域ID或者商圈ID
      */
-    private List<String> tradeIdList;
+    private String districtId;
 
     /**
      * 价格最小值
@@ -60,4 +59,14 @@ public class HouLeaseInfoDTO {
      * 房屋朝向
      */
     private String orientation;
+
+    /**
+     * 付款方式
+     */
+    private String paymentStyle;
+
+    /**
+     * 周边设施
+     */
+    private String[] surroundingFacilities;
 }
