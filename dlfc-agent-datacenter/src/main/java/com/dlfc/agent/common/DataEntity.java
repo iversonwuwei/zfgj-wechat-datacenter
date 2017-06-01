@@ -24,6 +24,13 @@ public abstract class DataEntity {
     protected Integer version;
     protected Date date;
 
+    protected String delFlag;
+
+    public DataEntity() {
+        this.deleteFlg = 0;
+        this.delFlag = "0";
+    }
+
     public void preInsert(UsrUser user) {
         if (StringUtils.isEmpty(id)) {
             this.id = UUID.randomUUID().toString().replaceAll("-", "");
