@@ -1,4 +1,4 @@
-package com.dlfc.system.service;
+package com.dlfc.system.service.interf;
 
 import com.dlfc.system.entity.SysSurFacisContrast;
 import com.dlfc.system.service.interf.find.AllFindService;

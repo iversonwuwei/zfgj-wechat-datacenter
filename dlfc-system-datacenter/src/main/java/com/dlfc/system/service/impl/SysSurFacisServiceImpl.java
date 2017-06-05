@@ -4,7 +4,7 @@ import com.dlfc.system.entity.SysSurFacis;
 import com.dlfc.system.entity.SysSurFacisExample;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.mapper.DataMapper;
-import com.dlfc.system.service.SysSurFacisService;
+import com.dlfc.system.service.interf.SysSurFacisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

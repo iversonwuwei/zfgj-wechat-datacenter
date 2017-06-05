@@ -1,6 +1,8 @@
 package com.dlfc.user.common;
 
 import com.dlfc.user.entity.UsrUser;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,8 @@ import java.util.UUID;
  */
 
 @Component
+@Getter
+@Setter
 public abstract class DataEntity {
     protected String id;
     protected String createUser;
@@ -26,27 +30,27 @@ public abstract class DataEntity {
 
     public void preInsert(UsrUser user) {
         if (StringUtils.isEmpty(id)) {
-            this.id = UUID.randomUUID().toString().replaceAll("-", "");
+            this.setId(UUID.randomUUID().toString().replaceAll("-", ""));
         }
 
         if (null != user && StringUtils.isNotEmpty(user.getId())) {
-            this.modifyUser = user.getId();
-            this.createUser = user.getId();
-            this.modifyUserIdentity = user.getUserIdentity();
-            this.createUserIdentity = user.getUserIdentity();
+            this.setModifyUser(user.getId());
+            this.setCreateUser(user.getId());
+            this.setModifyUserIdentity(user.getUserIdentity());
+            this.setCreateUserIdentity(user.getUserIdentity());
         }
         date = new Date();
-        this.modifyTime = date;
-        this.createTime = this.date;
-        this.version = 0;
-        this.deleteFlg = 0;
+        this.setModifyTime(date);
+        this.setCreateTime(date);
+        this.setVersion(0);
+        this.setDeleteFlg((short) 0);
     }
 
     public void preUpdate(UsrUser user) {
         if (null != user && StringUtils.isNotEmpty(user.getId())) {
-            this.modifyUser = user.getId();
+            this.setModifyUser(user.getId());
         }
         date = new Date();
-        this.modifyTime = date;
+        this.setModifyTime(date);
     }
 }

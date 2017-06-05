@@ -31,7 +31,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="sys_order" schema="dlfc" domainObjectName="SysOrder">
+        <table tableName="sys_broadband" schema="dlfc" domainObjectName="SysBroadband">
             <!--<columnOverride column="DESCRIPTION" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
             <!--<columnOverride column="DCRP_TXT" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
         </table>

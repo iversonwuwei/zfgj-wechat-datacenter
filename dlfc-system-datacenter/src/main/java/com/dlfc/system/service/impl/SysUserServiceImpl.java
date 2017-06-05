@@ -3,7 +3,7 @@ package com.dlfc.system.service.impl;
 import com.dlfc.system.entity.SysUser;
 import com.dlfc.system.entity.SysUserExample;
 import com.dlfc.system.mapper.DataMapper;
-import com.dlfc.system.service.SysUserService;
+import com.dlfc.system.service.interf.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

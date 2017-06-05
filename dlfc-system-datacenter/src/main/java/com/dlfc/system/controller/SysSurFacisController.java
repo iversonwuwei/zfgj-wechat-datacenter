@@ -2,7 +2,7 @@ package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysSurFacis;
 import com.dlfc.system.entity.UsrUser;
-import com.dlfc.system.service.SysSurFacisService;
+import com.dlfc.system.service.interf.SysSurFacisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;

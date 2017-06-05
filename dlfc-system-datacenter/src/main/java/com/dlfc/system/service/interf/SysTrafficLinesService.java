@@ -1,4 +1,4 @@
-package com.dlfc.system.service;
+package com.dlfc.system.service.interf;
 
 import com.dlfc.system.entity.SysTrafficLines;
 import com.dlfc.system.entity.UsrUser;

@@ -1,7 +1,7 @@
 package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysSurFacisContrast;
-import com.dlfc.system.service.SysSurFacisContrastService;
+import com.dlfc.system.service.interf.SysSurFacisContrastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;

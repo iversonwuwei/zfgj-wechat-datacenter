@@ -49,7 +49,7 @@ public class UsrHouCollectionController {
     }
 
     @RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
-    public boolean saveOrUpdate(@RequestParam UsrHouCollection entity) {
+    public boolean saveOrUpdate(@RequestBody UsrHouCollection entity) {
         return service.saveOrUpdate(entity, user);
     }
 

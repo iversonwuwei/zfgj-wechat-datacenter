@@ -1,7 +1,7 @@
 package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysUser;
-import com.dlfc.system.service.SysUserService;
+import com.dlfc.system.service.interf.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;

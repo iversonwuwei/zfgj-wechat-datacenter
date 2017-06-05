@@ -3,7 +3,7 @@ package com.dlfc.system.service.impl;
 import com.dlfc.system.entity.SysSurFacisContrast;
 import com.dlfc.system.entity.SysSurFacisContrastExample;
 import com.dlfc.system.mapper.DataMapper;
-import com.dlfc.system.service.SysSurFacisContrastService;
+import com.dlfc.system.service.interf.SysSurFacisContrastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

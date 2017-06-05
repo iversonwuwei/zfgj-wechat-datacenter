@@ -1,7 +1,7 @@
 package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysTradeAreas;
-import com.dlfc.system.service.SysTradeAreasService;
+import com.dlfc.system.service.interf.SysTradeAreasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;

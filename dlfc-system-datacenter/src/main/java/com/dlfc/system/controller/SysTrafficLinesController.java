@@ -2,7 +2,7 @@ package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysTrafficLines;
 import com.dlfc.system.entity.UsrUser;
-import com.dlfc.system.service.SysTrafficLinesService;
+import com.dlfc.system.service.interf.SysTrafficLinesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
