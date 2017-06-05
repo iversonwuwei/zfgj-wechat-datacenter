@@ -41,8 +41,14 @@ public class HouLeaseInfoController {
     }
 
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
-    public HouLeaseInfo findById(@RequestParam String id) {
-        return service.findById(id);
+    HouLeaseInfo findById(@RequestParam String id) {
+        return (HouLeaseInfo) service.findById(id);
+    }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    List<HouLeaseInfo> findAll(@RequestParam(defaultValue = "10") Integer pageSize,
+                               @RequestParam(defaultValue = "1") Integer pageNo) {
+        return service.findAll(null, pageSize, pageNo);
     }
 
     @RequestMapping(value = "/findByUid", method = RequestMethod.GET)

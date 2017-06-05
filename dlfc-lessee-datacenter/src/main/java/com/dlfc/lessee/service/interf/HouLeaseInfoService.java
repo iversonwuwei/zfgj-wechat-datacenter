@@ -19,4 +19,6 @@ public interface HouLeaseInfoService extends
         DataUpdateService<HouLeaseInfo, UsrUser>,
         UidFindService<HouLeaseInfo> {
     List<HouLeaseInfo> findByParams(HouLeaseInfoDTO dto);
+
+    List<HouLeaseInfo> findAll(String orderBy, Integer pageSize, Integer pageNo);
 }

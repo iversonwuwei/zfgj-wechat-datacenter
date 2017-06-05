@@ -78,6 +78,17 @@ public class HouLeaseInfoServiceImpl implements HouLeaseInfoService {
     }
 
     @Override
+    public List<HouLeaseInfo> findAll(String orderBy,
+                                      Integer pageSize,
+                                      Integer pageNo) {
+        example = new HouLeaseInfoExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
+        return mapper.selectByExample(example);
+    }
+
+    @Override
     public List<HouLeaseInfo> findByParams(HouLeaseInfoDTO dto) {
         example = new HouLeaseInfoExample();
         criteria = example.createCriteria();
