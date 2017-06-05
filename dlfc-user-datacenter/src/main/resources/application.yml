@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://10.32.156.224:3306/dlfc_155
-    username: rep1
-    password: mysql
+    url: jdbc:mysql://localhost:3306/dlfc_155
+    username: root
+    password: root
   application:
     name: dlfc-datacenter-user
 mybatis:
@@ -14,4 +14,4 @@ mybatis:
 eureka:
   client:
     service-url:
-      defaultZone: http://10.32.156.86:18099/eureka/
+      defaultZone: http://10.32.156.49:11111/eureka, http://10.32.156.49:11112/eureka #http://10.32.156.86:18099/eureka/

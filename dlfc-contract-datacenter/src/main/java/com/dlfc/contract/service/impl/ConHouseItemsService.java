@@ -1,6 +1,5 @@
 package com.dlfc.contract.service.impl;
 
-import com.dlfc.contract.common.PageUtil;
 import com.dlfc.contract.entity.ConHouseItems;
 import com.dlfc.contract.entity.ConHouseItemsExample;
 import com.dlfc.contract.entity.UsrUser;
@@ -9,8 +8,6 @@ import com.dlfc.contract.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Created by K on 2017/5/29.
@@ -78,16 +75,5 @@ public class ConHouseItemsService implements DataService<ConHouseItems> {
     @Override
     public ConHouseItems findById(String id) {
         return mapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public List<ConHouseItems> findAll(String orderBy,
-                                       Integer pageSize,
-                                       Integer pageNo) {
-        example = new ConHouseItemsExample();
-        criteria = example.createCriteria();
-        criteria.andDeleteFlgEqualTo((short) 0);
-        example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
-        return mapper.selectByExample(example);
     }
 }

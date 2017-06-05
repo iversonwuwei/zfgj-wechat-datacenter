@@ -1,6 +1,5 @@
 package com.dlfc.contract.service.impl;
 
-import com.dlfc.contract.common.PageUtil;
 import com.dlfc.contract.entity.ConOtherCosts;
 import com.dlfc.contract.entity.ConOtherCostsExample;
 import com.dlfc.contract.entity.UsrUser;
@@ -9,8 +8,6 @@ import com.dlfc.contract.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Created by K on 2017/5/29.
@@ -78,16 +75,5 @@ public class ConOtherCostsService implements DataService<ConOtherCosts> {
     @Override
     public ConOtherCosts findById(String id) {
         return mapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public List<ConOtherCosts> findAll(String orderBy,
-                                       Integer pageSize,
-                                       Integer pageNo) {
-        example = new ConOtherCostsExample();
-        criteria = example.createCriteria();
-        criteria.andDeleteFlgEqualTo((short) 0);
-        example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
-        return mapper.selectByExample(example);
     }
 }

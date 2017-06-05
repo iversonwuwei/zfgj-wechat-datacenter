@@ -3,8 +3,6 @@ package com.dlfc.agent.service;
 import com.dlfc.agent.entity.UsrUser;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 /**
  * Created by K on 2017/5/29.
  */
@@ -21,6 +19,4 @@ public interface DataService<T> {
     String updateById(T t, UsrUser user);
 
     T findById(String id);
-
-    List<T> findAll(String orderBy, Integer pageSize, Integer pageNo);
 }

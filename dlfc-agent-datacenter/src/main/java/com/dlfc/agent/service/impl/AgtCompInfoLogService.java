@@ -1,6 +1,5 @@
 package com.dlfc.agent.service.impl;
 
-import com.dlfc.agent.common.PageUtil;
 import com.dlfc.agent.entity.AgtCompInfoLog;
 import com.dlfc.agent.entity.AgtCompInfoLogExample;
 import com.dlfc.agent.entity.UsrUser;
@@ -9,8 +8,6 @@ import com.dlfc.agent.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Created by K on 2017/5/29.
@@ -78,16 +75,5 @@ public class AgtCompInfoLogService implements DataService<AgtCompInfoLog> {
     @Override
     public AgtCompInfoLog findById(String id) {
         return mapper.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public List<AgtCompInfoLog> findAll(String orderBy,
-                                        Integer pageSize,
-                                        Integer pageNo) {
-        example = new AgtCompInfoLogExample();
-        criteria = example.createCriteria();
-        criteria.andDeleteFlgEqualTo((short) 0);
-        example.setOrderByClause(PageUtil.generatePage(orderBy, pageSize, pageNo));
-        return mapper.selectByExample(example);
     }
 }

@@ -1,8 +1,7 @@
 package com.dlfc.user.controller;
 
 import com.dlfc.user.entity.UsrDelInfo;
-import com.dlfc.user.entity.UsrUser;
-import com.dlfc.user.service.DataService;
+import com.dlfc.user.service.interf.UsrDelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,39 +21,15 @@ public class UsrDelInfoController {
 
     @Autowired
     @Qualifier("UsrDelInfoService")
-    private DataService service;
-
-    @RequestMapping(value = "/count", method = RequestMethod.GET)
-    public int count() {
-        return service.count();
-    }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    String save(@RequestParam UsrDelInfo entity,
-                @RequestParam UsrUser user) {
-        return service.save(entity, user);
-    }
-
-//    @RequestMapping(value = "/removeById", method = RequestMethod.DELETE)
-//    String removeById(@RequestParam String id,
-//                      @RequestParam UsrUser user) {
-//        return service.removeById(id, user);
-//    }
-
-    @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    String updateById(@RequestParam UsrDelInfo entity,
-                      @RequestParam UsrUser user) {
-        return service.updateById(entity, user);
-    }
+    private UsrDelInfoService service;
 
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
-    UsrDelInfo findById(@RequestParam String id) {
-        return (UsrDelInfo) service.findById(id);
+    public UsrDelInfo findById(@RequestParam String id) {
+        return service.findById(id);
     }
 
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    List<UsrDelInfo> findAll(@RequestParam(required = false) Integer pageSize,
-                             @RequestParam(required = false) Integer pageNo) {
-        return service.findAll(null, pageSize, pageNo);
+    @RequestMapping(value = "/findByUid", method = RequestMethod.GET)
+    public List<UsrDelInfo> findByUid(@RequestParam String uid) {
+        return service.findByUid(uid);
     }
 }

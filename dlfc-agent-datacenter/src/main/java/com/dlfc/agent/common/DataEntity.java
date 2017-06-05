@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 
 @Component
-public abstract class DataEntity {
+public class DataEntity {
     protected String id;
     protected String createUser;
     protected Short createUserIdentity;
@@ -55,5 +55,21 @@ public abstract class DataEntity {
         }
         date = new Date();
         this.modifyTime = date;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setDeleteFlg(Short deleteFlg) {
+        this.deleteFlg = deleteFlg;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
     }
 }

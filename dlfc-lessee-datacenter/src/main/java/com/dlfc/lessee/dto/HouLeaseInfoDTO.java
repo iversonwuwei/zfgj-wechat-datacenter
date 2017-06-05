@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Created by K on 2017/5/31.
@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class HouLeaseInfoDTO {
 
     /**
-     * 价格排序==>1：从小到大，2：从大到小
+     * 排序结果（ORDER BY后面的参数）
      */
     private String orderByRent;
 
@@ -38,12 +38,12 @@ public class HouLeaseInfoDTO {
     /**
      * 价格最小值
      */
-    private BigDecimal minRent;
+    private Integer minRent;
 
     /**
      * 价格最大值
      */
-    private BigDecimal maxRent;
+    private Integer maxRent;
 
     /**
      * 来源==>1：经纪人，0：个人
@@ -68,5 +68,5 @@ public class HouLeaseInfoDTO {
     /**
      * 周边设施
      */
-    private String[] surroundingFacilities;
+    private List<String> facilityIdList;
 }

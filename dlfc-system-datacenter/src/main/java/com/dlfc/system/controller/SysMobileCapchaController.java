@@ -2,15 +2,9 @@ package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysMobileCapcha;
 import com.dlfc.system.entity.UsrUser;
-import com.dlfc.system.service.DataService;
+import com.dlfc.system.service.interf.SysMobileCapchaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by K on 2017/5/29.
@@ -21,40 +15,16 @@ import java.util.List;
 public class SysMobileCapchaController {
 
     @Autowired
-    @Qualifier("SysMobileCapchaService")
-    private DataService service;
-
-    @RequestMapping(value = "/count", method = RequestMethod.GET)
-    public int count() {
-        return service.count();
-    }
+    private SysMobileCapchaService service;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    String save(@RequestParam SysMobileCapcha entity,
-                @RequestParam UsrUser user) {
+    public String save(@RequestBody SysMobileCapcha entity,
+                       @RequestParam UsrUser user) {
         return service.save(entity, user);
     }
 
-//    @RequestMapping(value = "/removeById", method = RequestMethod.DELETE)
-//    String removeById(@RequestParam String id,
-//                      @RequestParam UsrUser user) {
-//        return service.removeById(id, user);
-//    }
-
-    @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    String updateById(@RequestParam SysMobileCapcha entity,
-                      @RequestParam UsrUser user) {
-        return service.updateById(entity, user);
-    }
-
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
-    SysMobileCapcha findById(@RequestParam String id) {
-        return (SysMobileCapcha) service.findById(id);
-    }
-
-    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
-    List<SysMobileCapcha> findAll(@RequestParam(required = false) Integer pageSize,
-                               @RequestParam(required = false) Integer pageNo) {
-        return service.findAll(null, pageSize, pageNo);
+    public SysMobileCapcha findById(@RequestParam String id) {
+        return service.findById(id);
     }
 }
