@@ -27,11 +27,11 @@ public class SysMessageController {
 
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public SysMessage findById(@RequestParam String id) {
-        return (SysMessage) service.findById(id);
+        return service.findById(id);
     }
 
     @RequestMapping(value = "/findByReceiverUid", method = RequestMethod.GET)
-    public List<SysMessage> findByReceiverUid(@RequestParam(name = "receiverId") String receiverId) {
-        return service.findByUid(receiverId);
+    public List<SysMessage> findByReceiverUid(@RequestParam(name = "receiverUid") String receiverUid) {
+        return service.findByUid(receiverUid);
     }
 }

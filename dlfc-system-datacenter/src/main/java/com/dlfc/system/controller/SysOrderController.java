@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by K on 2017/5/29.
  */
@@ -28,5 +30,10 @@ public class SysOrderController {
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public SysOrder findById(@RequestParam String id) {
         return service.findById(id);
+    }
+
+    @RequestMapping(value = "/findByUid", method = RequestMethod.GET)
+    public List<SysOrder> findByUid(@RequestParam String uid) {
+        return service.findByUid(uid);
     }
 }

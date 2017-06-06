@@ -5,9 +5,12 @@ import com.dlfc.system.entity.SysOrderExample;
 import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.mapper.DataMapper;
 import com.dlfc.system.service.interf.SysOrderService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by K on 2017/5/29.
@@ -41,5 +44,17 @@ public class SysOrderServiceImpl implements SysOrderService {
     @Override
     public SysOrder findById(String id) {
         return mapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<SysOrder> findByUid(String uid) {
+        if (StringUtils.isNotEmpty(uid)) {
+            example = new SysOrderExample();
+            criteria = example.createCriteria();
+            criteria.andDeleteFlgEqualTo((short) 0);
+            criteria.andUIdEqualTo(uid);
+            return mapper.selectByExample(example);
+        }
+        return null;
     }
 }

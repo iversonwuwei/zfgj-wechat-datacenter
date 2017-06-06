@@ -2,7 +2,7 @@ package com.dlfc.system.service.interf;
 
 import com.dlfc.system.entity.SysOrder;
 import com.dlfc.system.entity.UsrUser;
-import com.dlfc.system.service.interf.find.DataFindService;
+import com.dlfc.system.service.interf.find.UidFindService;
 import com.dlfc.system.service.interf.save.DataSaveService;
 
 /**
@@ -10,5 +10,5 @@ import com.dlfc.system.service.interf.save.DataSaveService;
  */
 public interface SysOrderService extends
         DataSaveService<SysOrder, UsrUser>,
-        DataFindService<SysOrder> {
+        UidFindService<SysOrder> {
 }

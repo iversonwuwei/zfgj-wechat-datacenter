@@ -5,10 +5,7 @@ import com.dlfc.user.entity.UsrUser;
 import com.dlfc.user.service.interf.UsrFeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by K on 2017/5/29.
@@ -24,8 +21,8 @@ public class UsrFeedbackController {
     @Qualifier("UsrFeedbackService")
     private UsrFeedbackService service;
 
-    @RequestMapping(value = "/save", method = RequestMethod.GET)
-    public String save(@RequestParam UsrFeedback entity) {
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@RequestBody UsrFeedback entity) {
         return service.save(entity, user);
     }
 }
