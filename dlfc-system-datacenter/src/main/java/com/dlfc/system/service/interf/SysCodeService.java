@@ -11,4 +11,6 @@ import java.util.List;
 public interface SysCodeService extends
         DataFindService<SysCode> {
     List<SysCode> findByType(String type);
+
+    SysCode findByTypeAndCode(String type, String code);
 }

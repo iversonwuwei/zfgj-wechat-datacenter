@@ -118,9 +118,6 @@ public class HouLeaseInfoServiceImpl implements HouLeaseInfoService {
         if (StringUtils.isNotEmpty(dto.getPaymentStyle())) {
             criteria.andRentTypeLike(LIKE_FIX + "," + dto.getPaymentStyle() + LIKE_FIX);
         }
-        if (null != dto.getFacilityIdList() && dto.getFacilityIdList().size() > 0) {
-            criteria.andIdIn(dto.getFacilityIdList());
-        }
         example.setOrderByClause(PageUtil.generatePage(dto.getOrderByRent(), dto.getPageSize(), dto.getPageNo()));
         return mapper.selectByExample(example);
     }

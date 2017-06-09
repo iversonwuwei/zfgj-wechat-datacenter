@@ -40,4 +40,12 @@ public class SysTradeAreasServiceImpl implements SysTradeAreasService {
         criteria.andParentIdEqualTo(parentId);
         return mapper.selectByExample(example);
     }
+
+    @Override
+    public List<SysTradeAreas> findAll() {
+        example = new SysTradeAreasExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        return mapper.selectByExample(example);
+    }
 }

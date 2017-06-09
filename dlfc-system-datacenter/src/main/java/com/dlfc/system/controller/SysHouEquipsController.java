@@ -17,25 +17,24 @@ import java.util.List;
 @RequestMapping("/wc/datas/sysHouEquipments")
 public class SysHouEquipsController {
 
+    private UsrUser user = new UsrUser();
+
     @Autowired
     @Qualifier("SysHouEquipsService")
     private SysHouEquipsService service;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestBody SysHouEquips entity,
-                       @RequestParam UsrUser user) {
+    public String save(@RequestBody SysHouEquips entity) {
         return service.save(entity, user);
     }
 
     @RequestMapping(value = "/removeById", method = RequestMethod.DELETE)
-    public String removeById(@RequestParam String id,
-                             @RequestParam UsrUser user) {
+    public String removeById(@RequestParam String id) {
         return service.removeById(id, user);
     }
 
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    public String updateById(@RequestParam SysHouEquips entity,
-                             @RequestParam UsrUser user) {
+    public String updateById(@RequestParam SysHouEquips entity) {
         return service.updateById(entity, user);
     }
 

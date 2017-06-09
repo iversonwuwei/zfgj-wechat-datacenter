@@ -9,7 +9,7 @@
 
     <context id="MySQLTables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/dlfc_155"
+                        connectionURL="jdbc:mysql://10.32.156.86:3306/dlfc_155"
                         userId="root"
                         password="root">
         </jdbcConnection>
@@ -31,7 +31,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="sys_broadband" schema="dlfc" domainObjectName="SysBroadband">
+        <table tableName="sys_traffic_lines" schema="dlfc" domainObjectName="SysTrafficLines">
             <!--<columnOverride column="DESCRIPTION" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
             <!--<columnOverride column="DCRP_TXT" jdbcType="VARCHAR" javaType="java.lang.String"/>-->
         </table>

@@ -32,4 +32,10 @@ public class SysCodeController {
     public List<SysCode> findByType(@RequestParam(name = "type") String type) {
         return service.findByType(type);
     }
+
+    @RequestMapping(value = "/findByTypeAndCode", method = RequestMethod.GET)
+    public SysCode findByTypeAndCode(@RequestParam(name = "type") String type,
+                                           @RequestParam(name = "code") String code) {
+        return service.findByTypeAndCode(type, code);
+    }
 }

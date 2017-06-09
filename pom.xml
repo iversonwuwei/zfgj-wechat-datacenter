@@ -103,6 +103,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.housecenter.dlfc.common</groupId>
+            <artifactId>dlfc-common</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>

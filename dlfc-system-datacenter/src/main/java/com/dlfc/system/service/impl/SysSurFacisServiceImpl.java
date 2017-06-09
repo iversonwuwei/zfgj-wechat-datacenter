@@ -74,23 +74,6 @@ public class SysSurFacisServiceImpl implements SysSurFacisService {
     }
 
     @Override
-    public SysSurFacis findByFacilityIds(List<String> facilityIds) {
-        if (null != facilityIds && facilityIds.size() > 0) {
-            example = new SysSurFacisExample();
-            criteria = example.createCriteria();
-            criteria.andDeleteFlgEqualTo((short) 0);
-            for (String str : facilityIds) {
-                criteria.andFacilityIdsLike(str);
-            }
-            entityList = mapper.selectByExample(example);
-            if (null != entityList && entityList.size() > 0) {
-                return entityList.get(0);
-            }
-        }
-        return null;
-    }
-
-    @Override
     public List<SysSurFacis> findByLid(String lid) {
         example = new SysSurFacisExample();
         criteria = example.createCriteria();

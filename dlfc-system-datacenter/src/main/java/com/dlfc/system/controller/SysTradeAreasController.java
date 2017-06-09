@@ -32,4 +32,9 @@ public class SysTradeAreasController {
     public List<SysTradeAreas> findByParentId(@RequestParam(name = "parentId") String parentId) {
         return service.findByLid(parentId);
     }
+
+    @RequestMapping(value = "/findAll", method = RequestMethod.GET)
+    public List<SysTradeAreas> findAll() {
+        return service.findAll();
+    }
 }

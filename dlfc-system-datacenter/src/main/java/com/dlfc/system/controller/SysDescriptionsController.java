@@ -16,24 +16,23 @@ import java.util.List;
 @RequestMapping("/wc/datas/sysDescriptions")
 public class SysDescriptionsController {
 
+    private UsrUser user = new UsrUser();
+
     @Autowired
     private SysDescriptionsService service;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestBody SysDescriptions entity,
-                       @RequestParam UsrUser user) {
+    public String save(@RequestBody SysDescriptions entity) {
         return service.save(entity, user);
     }
 
     @RequestMapping(value = "/removeById", method = RequestMethod.DELETE)
-    public String removeById(@RequestParam String id,
-                             @RequestParam UsrUser user) {
+    public String removeById(@RequestParam String id) {
         return service.removeById(id, user);
     }
 
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    public String updateById(@RequestParam SysDescriptions entity,
-                             @RequestParam UsrUser user) {
+    public String updateById(@RequestParam SysDescriptions entity) {
         return service.updateById(entity, user);
     }
 

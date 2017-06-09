@@ -1,13 +1,11 @@
 package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysSurFacisContrast;
+import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.interf.SysSurFacisContrastService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,8 +14,10 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/wc/datas/sysSurroundingFacilitiesContrast")
+@RequestMapping("/wc/datas/sysSurFacisContrast")
 public class SysSurFacisContrastController {
+
+    private UsrUser user = new UsrUser();
 
     @Autowired
     @Qualifier("SysSurFacisContrastService")
@@ -31,5 +31,15 @@ public class SysSurFacisContrastController {
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public List<SysSurFacisContrast> findAll() {
         return service.findAll();
+    }
+
+    @RequestMapping(value = "/findByCode", method = RequestMethod.GET)
+    public SysSurFacisContrast findByCode(@RequestParam String code) {
+        return service.findByCode(code);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@RequestBody SysSurFacisContrast entity) {
+        return service.save(entity, user);
     }
 }

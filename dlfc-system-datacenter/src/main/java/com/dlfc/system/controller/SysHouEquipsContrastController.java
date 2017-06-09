@@ -1,12 +1,10 @@
 package com.dlfc.system.controller;
 
 import com.dlfc.system.entity.SysHouEquipsContrast;
+import com.dlfc.system.entity.UsrUser;
 import com.dlfc.system.service.interf.SysHouEquipsContrastService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,8 +13,10 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/wc/datas/sysHouEquipmentsContrast")
+@RequestMapping("/wc/datas/sysHouEquipsContrast")
 public class SysHouEquipsContrastController {
+
+    private UsrUser user = new UsrUser();
 
     @Autowired
     private SysHouEquipsContrastService service;
@@ -29,5 +29,15 @@ public class SysHouEquipsContrastController {
     @RequestMapping(value = "/findAll", method = RequestMethod.GET)
     public List<SysHouEquipsContrast> findAll() {
         return service.findAll();
+    }
+
+    @RequestMapping(value = "/findByCode", method = RequestMethod.GET)
+    public SysHouEquipsContrast findByCode(@RequestParam String code) {
+        return service.findByCode(code);
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@RequestBody SysHouEquipsContrast entity) {
+        return service.save(entity, user);
     }
 }

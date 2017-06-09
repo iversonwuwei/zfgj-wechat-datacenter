@@ -22,7 +22,7 @@ public class SysCodeServiceImpl implements SysCodeService {
 
     private SysCodeExample.Criteria criteria;
 
-    private SysCode entity;
+    private List<SysCode> entityList;
 
     @Autowired
     private DataMapper<SysCode, SysCodeExample> mapper;
@@ -39,5 +39,20 @@ public class SysCodeServiceImpl implements SysCodeService {
         criteria.andDeleteFlgEqualTo((short) 0);
         criteria.andTypeEqualTo(type);
         return mapper.selectByExample(example);
+    }
+
+    @Override
+    public SysCode findByTypeAndCode(String type,
+                                     String code) {
+        example = new SysCodeExample();
+        criteria = example.createCriteria();
+        criteria.andDeleteFlgEqualTo((short) 0);
+        criteria.andTypeEqualTo(type);
+        criteria.andCodeEqualTo(code);
+        entityList = mapper.selectByExample(example);
+        if (null != entityList && entityList.size() == 1) {
+            return entityList.get(0);
+        }
+        return null;
     }
 }

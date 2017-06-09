@@ -18,8 +18,23 @@ public class UsrUserController {
     @Qualifier("UsrUserService")
     private UsrUserService service;
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String save(@RequestBody UsrUser entity) {
+        return service.save(entity, null);
+    }
+
+    @RequestMapping(value = "/updateById", method = RequestMethod.POST)
+    public String updateById(@RequestBody UsrUser entity) {
+        return service.updateById(entity, null);
+    }
+
     @RequestMapping(value = "/findById", method = RequestMethod.GET)
     public UsrUser findById(@RequestParam String id) {
         return service.findById(id);
+    }
+
+    @RequestMapping(value = "/findByUser", method = RequestMethod.GET)
+    public UsrUser findByUser(@RequestParam String user) {
+        return service.findByUser(user);
     }
 }

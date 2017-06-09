@@ -17,25 +17,24 @@ import java.util.List;
 @RequestMapping("/wc/datas/sysSurroundingFacilities")
 public class SysSurFacisController {
 
+    private UsrUser user=new UsrUser();
+
     @Autowired
     @Qualifier("SysSurFacisService")
     private SysSurFacisService service;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestBody SysSurFacis entity,
-                       @RequestParam UsrUser user) {
+    public String save(@RequestBody SysSurFacis entity) {
         return service.save(entity, user);
     }
 
     @RequestMapping(value = "/removeById", method = RequestMethod.DELETE)
-    public String removeById(@RequestParam String id,
-                             @RequestParam UsrUser user) {
+    public String removeById(@RequestParam String id) {
         return service.removeById(id, user);
     }
 
     @RequestMapping(value = "/updateById", method = RequestMethod.POST)
-    public String updateById(@RequestParam SysSurFacis entity,
-                             @RequestParam UsrUser user) {
+    public String updateById(@RequestParam SysSurFacis entity) {
         return service.updateById(entity, user);
     }
 
@@ -47,10 +46,5 @@ public class SysSurFacisController {
     @RequestMapping(value = "/findByLid", method = RequestMethod.GET)
     public List<SysSurFacis> findByLid(@RequestParam String lid) {
         return service.findByLid(lid);
-    }
-
-    @RequestMapping(value = "/findByFacilityIds", method = RequestMethod.POST)
-    public SysSurFacis findByFacilityIds(@RequestBody List<String> facilityIds) {
-        return service.findByFacilityIds(facilityIds);
     }
 }
